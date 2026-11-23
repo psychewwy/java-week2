@@ -1,0 +1,10 @@
+# 统一换行符，避免 Windows 下提交时刷一堆 CRLF 警告
+* text=auto
+
+*.sh   text eol=lf
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.java text eol=lf
+*.sql  text eol=lf
+*.md   text eol=lf
+*.xml  text eol=lf

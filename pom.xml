@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.week2</groupId>
+    <artifactId>java-week2</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <name>java-week2</name>
+    <description>第二周 面向对象 / 集合 / 异常 / 泛型 / 多表查询</description>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencies>
+        <!--
+          JUnit 5：写单元测试用（考核项 1 的「附单元测试」）
+          注意 artifactId 是 junit-jupiter（聚合包），不是一个一个引 api/engine。
+          scope=test 表示只在测试时用，不会打进生产的 jar。
+        -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+              Maven 3 自带的 surefire 版本太老，不认 JUnit 5 的 @Test。
+              不升版本的话 mvn test 会显示「Tests run: 0」，看着像通过其实一个都没跑。
+              这是新手最容易被骗的地方。
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+            </plugin>
+
+            <!-- 命令行跑单个类：mvn exec:java -Dexec.mainClass=com.week2.oop.OopDemo -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <fork>true</fork>
+                    <systemProperties>
+                        <systemProperty>
+                            <key>file.encoding</key>
+                            <value>UTF-8</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
